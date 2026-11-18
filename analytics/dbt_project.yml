@@ -5,3 +5,23 @@ profile: databricks
 clean-targets:
   - "target"
   - "dbt_packages"
+
+models:
+  analytics:
+    +persist_docs: #allow our yml in our folders to add our comments for our columns
+      relation: true
+      columns: true
+    staging: #folder
+      +materialized: view #create sql view
+      +schema: staging #Put models in the staging schema
+    intermediate: #folder
+      +materialized: view
+      +schema: intermediate
+    marts: #folder
+      +materialized: table
+      +schema: marts
+seeds:
+  analytics:
+    +schema: seeds
+flags:
+  require_generic_test_arguments_property: true

@@ -1,0 +1,73 @@
+models:
+  - name: stg_job_postings
+    description: >
+      Cleaned job postings from the raw job-market data.
+      Excludes records marked as ingestion errors and standardizes
+      company names, job sources, and search timestamps.
+
+    columns:
+      - name: job_id
+        description: Unique identifier for each job posting.
+        data_tests:
+          - not_null
+
+      - name: job_title
+        description: Title of the job posting.
+
+      - name: company_name
+        description: Company offering the job, with surrounding whitespace removed.
+
+      - name: job_location
+        description: Location associated with the job posting.
+
+      - name: job_via
+        description: Platform or source where the job was found.
+
+      - name: job_posted_at
+        description: Original posting date information.
+
+      - name: job_salary
+        description: Original salary information as provided by the source.
+
+      - name: job_schedule_type
+        description: Employment schedule or type, such as full-time or contract.
+
+      - name: job_work_from_home
+        description: Indicates whether the position supports remote work.
+
+      - name: job_extensions_raw
+        description: Original job extension information.
+
+      - name: searched_at
+        description: Timestamp when the job posting was collected.
+
+      - name: search_date
+        description: Date when the job search was performed.
+
+      - name: search_term
+        description: Keyword used to find the job posting.
+
+      - name: search_location
+        description: Location used in the job search.
+
+  - name: stg_job_skills
+    description: >
+      Cleaned job skills extracted from job postings.
+      Removes surrounding whitespace from skill keywords and
+      retains the relationship between jobs and their associated skills.
+
+    columns:
+      - name: job_id
+        description: Identifier linking the skill to a job posting.
+        data_tests:
+          - not_null
+
+      - name: skill_id
+        description: Identifier for the extracted skill.
+        data_tests:
+          - not_null
+
+      - name: skill_keyword
+        description: Extracted skill keyword with surrounding whitespace removed.
+        data_tests:
+          - not_null
