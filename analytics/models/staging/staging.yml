@@ -29,6 +29,25 @@ models:
       - name: job_salary
         description: Original salary information as provided by the source.
 
+      - name: salary_min
+        description: minimum salary.
+        data_tests:
+          - non_negative
+          
+      - name: salary_max
+        description: maximum salary.
+        data_tests:
+          - non_negative
+
+      - name: salary_avg
+        description: average salary.
+
+      - name: salary_period
+        description: "Pay period parsed from the salary text: year, hour, month, day, or week."
+
+      - name: salary_currency
+        description: currency used
+
       - name: job_schedule_type
         description: Employment schedule or type, such as full-time or contract.
 
