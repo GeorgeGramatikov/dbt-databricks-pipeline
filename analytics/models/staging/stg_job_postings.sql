@@ -38,7 +38,7 @@ cleaning_data as (
         array_contains(
             job_extensions,
             "{{ keyword }}"
-        ) as has_{{keyword | lower | replace(' ', '_')}}
+        ) as has_{{slugify(keyword)}}
         {{- "," if not loop.last}}
         {% endfor %}
 
