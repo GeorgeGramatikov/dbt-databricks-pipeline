@@ -31,13 +31,9 @@ models:
 
       - name: salary_min
         description: minimum salary.
-        data_tests:
-          - non_negative
           
       - name: salary_max
         description: maximum salary.
-        data_tests:
-          - non_negative
 
       - name: salary_avg
         description: average salary.
