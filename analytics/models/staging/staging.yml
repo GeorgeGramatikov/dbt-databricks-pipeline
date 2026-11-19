@@ -35,9 +35,6 @@ models:
       - name: job_work_from_home
         description: Indicates whether the position supports remote work.
 
-      - name: job_extensions_raw
-        description: Original job extension information.
-
       - name: searched_at
         description: Timestamp when the job posting was collected.
 
@@ -49,6 +46,19 @@ models:
 
       - name: search_location
         description: Location used in the job search.
+
+      - name: has_health_insurance
+        description: true or false if health insurance exists
+
+      - name: has_dental_insurance
+        description: true or false if dental insurance exists
+
+      - name: has_paid_time_off
+        description: true or false if paid time exists
+      
+      - name: has_no_degree_mentioned
+        description: true or false if a degree is mentioned
+
 
   - name: stg_job_skills
     description: >
