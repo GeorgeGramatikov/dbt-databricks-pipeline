@@ -8,12 +8,21 @@ models:
     columns:
       - name: job_id
         description: Unique identifier for each job posting.
+        data_tests:
+          - unique
+          - not_null
       - name: job_title
         description: The title of the job as listed in the posting.
       - name: search_term
         description: The search term used to find the job posting.
       - name: company_name
         description: The name of the company offering the job.
+        data_tests:
+          - not_null
+          - relationships: 
+              arguments:
+                to: ref('dim_company')
+                field: company_name
       - name: job_location
         description: The location of the job as listed in the posting.
       - name: source_platform
@@ -50,6 +59,9 @@ models:
     columns:
       - name: company_name
         description: The name of the company.
+        data_tests:
+          - unique
+          - not_null
       - name: total_job_postings
         description: The total number of job postings associated with the company.
       - name: avg_salary_year
@@ -62,6 +74,9 @@ models:
     columns:
       - name: skill_id
         description: Unique identifier for each skill.
+        data_tests:
+          - unique
+          - not_null
       - name: display_name
         description: The name of the skill displayed to users.
       - name: category
@@ -78,7 +93,19 @@ models:
     columns:
       - name: job_id
         description: The identifier of the job posting associated with the skill.
+        data_tests:
+          - not_null
+          - relationships: 
+              arguments:
+                to: ref('fct_job_postings')
+                field: job_id
       - name: skill_id
         description: The identifier of the skill associated with the job posting.
+        data_tests:
+          - not_null
+          - relationships: #make sure every child 'skill_id' in the bridge table has a parent record in the dim_skill table
+              arguments:
+                to: ref('dim_skill')
+                field: skill_id
       - name: skill_keyword
         description: The skill name as it appeared in the original job posting.

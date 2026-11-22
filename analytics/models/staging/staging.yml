@@ -31,9 +31,13 @@ models:
 
       - name: salary_min
         description: minimum salary.
+        data_tests:
+          - non_negative
           
       - name: salary_max
         description: maximum salary.
+        data_tests:
+          - non_negative
 
       - name: salary_avg
         description: average salary.
@@ -46,6 +50,12 @@ models:
 
       - name: job_schedule_type
         description: Employment schedule or type, such as full-time or contract.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Part-time', 'Full-time', 'Contractor', 'Internship']  
+              config:
+                severity: warn
 
       - name: job_work_from_home
         description: Indicates whether the position supports remote work.
@@ -58,6 +68,10 @@ models:
 
       - name: search_term
         description: Keyword used to find the job posting.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Data Engineer', 'Data Analyst', 'Data Scientist']
 
       - name: search_location
         description: Location used in the job search.
