@@ -1,0 +1,84 @@
+
+models:
+  - name: fct_job_postings
+    description: >
+      Contains one record for each job posting. If a job is scraped more than
+      once, the most recent version is kept. New jobs are added, and existing
+      jobs are updated using job_id.
+    columns:
+      - name: job_id
+        description: Unique identifier for each job posting.
+      - name: job_title
+        description: The title of the job as listed in the posting.
+      - name: search_term
+        description: The search term used to find the job posting.
+      - name: company_name
+        description: The name of the company offering the job.
+      - name: job_location
+        description: The location of the job as listed in the posting.
+      - name: source_platform
+        description: The website or platform where the job was found.
+      - name: job_schedule_type
+        description: The type of work schedule, such as full-time or part-time.
+      - name: job_work_from_home
+        description: Indicates whether the job is listed as remote.
+      - name: search_date
+        description: The date the job posting was most recently scraped.
+      - name: salary_min
+        description: The minimum salary listed for the job, if available.
+      - name: salary_max
+        description: The maximum salary listed for the job, if available.
+      - name: salary_avg
+        description: The midpoint between the minimum and maximum listed salaries.
+      - name: salary_period
+        description: The pay period used for the salary, such as yearly, monthly, or hourly.
+      - name: salary_currency
+        description: The currency used for the listed salary, such as USD.
+      - name: has_health_insurance
+        description: Indicates whether the job posting mentions health insurance.
+      - name: has_dental_insurance
+        description: Indicates whether the job posting mentions dental insurance.
+      - name: has_paid_time_off
+        description: Indicates whether the job posting mentions paid time off.
+      - name: has_no_degree_mentioned
+        description: Indicates whether the job posting mentions that a degree is not required.
+
+  - name: dim_company
+    description: >
+      Contains one record for each company and summarizes its job postings
+      and average annual salary.
+    columns:
+      - name: company_name
+        description: The name of the company.
+      - name: total_job_postings
+        description: The total number of job postings associated with the company.
+      - name: avg_salary_year
+        description: The average salary for the company's postings with annual salaries listed in USD.
+
+  - name: dim_skill
+    description: >
+      Contains one record for each skill in the skills list, along with
+      its category and the number of job postings that mention it.
+    columns:
+      - name: skill_id
+        description: Unique identifier for each skill.
+      - name: display_name
+        description: The name of the skill displayed to users.
+      - name: category
+        description: The main category the skill belongs to.
+      - name: subcategory
+        description: A more specific group within the skill category.
+      - name: postings_with_skill
+        description: The number of distinct job postings that mention this skill.
+
+  - name: bridge_job_skills
+    description: >
+      Connects job postings to the skills they require. Each record links
+      a job posting to a skill found in its description.
+    columns:
+      - name: job_id
+        description: The identifier of the job posting associated with the skill.
+      - name: skill_id
+        description: The identifier of the skill associated with the job posting.
+      - name: skill_keyword
+        description: The skill name as it appeared in the original job posting.

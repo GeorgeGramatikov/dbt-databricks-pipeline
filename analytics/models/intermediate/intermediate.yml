@@ -1,0 +1,12 @@
+models:
+  - name: int_skill_observations
+    description: One row per skill_id observed in the raw skill rows
+    columns:
+      - name: skill_id
+        description: Skill key
+        data_tests:
+          - not_null
+          - unique
+      - name: postings_with_skill
+        description: >
+          Distinct jobs observed with this skill in staging. 
