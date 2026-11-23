@@ -82,16 +82,15 @@ repeatable without manually running every step.
 
 ## Technology Stack
 
--   **Python** --- ingestion and supporting pipeline logic
--   **Apache Spark / PySpark** --- distributed data processing in
-    Databricks
--   **Databricks** --- compute, storage, workspace, and job execution
--   **Unity Catalog** --- catalog, schema, table, and Volume
+-   **Python** - data ingestion, file handling, and pipeline orchestration logic.
+-   **Apache Spark / PySpark** - Spark SQL and distributed data processing in Databricks.
+-   **Databricks** - compute, storage, workspace, and job execution
+-   **Unity Catalog** - catalog, schema, table, and Volume
     organization
--   **dbt** --- transformations, model dependencies, tests, and
+-   **dbt** - transformations, model dependencies, tests, and
     snapshots
--   **SQL** --- transformations and analysis
--   **GitHub** --- source control and dataset hosting
+-   **SQL** - transformations and analysis
+-   **GitHub** - source control and dataset hosting
 
 ## Repository Structure
 
