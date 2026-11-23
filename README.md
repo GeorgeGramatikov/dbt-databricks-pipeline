@@ -1,4 +1,4 @@
-# Job Postings Analytics Pipeline --- Databricks & dbt
+# Job Postings Analytics Pipeline | Databricks & dbt
 
 ![Pipeline](img/pipeline.png)
 
