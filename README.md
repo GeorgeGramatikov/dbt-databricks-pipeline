@@ -9,9 +9,8 @@ Databricks and dbt. Raw job-posting and skills data is landed in
 Databricks, organized into analytics-friendly models, and transformed
 into a dimensional structure that supports SQL analysis.
 
-The goal is to create a repeatable workflow---from ingesting raw files
-to transforming, testing, and maintaining models---using tools commonly
-found in modern data engineering environments.
+The goal is to create a repeatable workflow. Ingesting raw files
+to transforming, testing, and maintaining models
 
 ## Architecture
 
