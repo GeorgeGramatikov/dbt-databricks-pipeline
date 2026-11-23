@@ -32,7 +32,7 @@ storage and compute environment.
 
 Raw -> Staging -> Intermediate -> Star-Scema Marts. Snapshots capture the history off staging. Every dbt model built is shown below.
 
-![dbt models](img/dbt_pipeline.png)
+![dbt models](img/dbt_pipeline.jpg)
 
 ## Data Ingestion
 
