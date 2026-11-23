@@ -8,8 +8,6 @@
 # MAGIC Every night after (4.01): Task 1 of the Databricks Job, pulled from `scripts/load_raw.py` in your repo.
 # MAGIC Safe to rerun: files already in the Volume are skipped, the raw tables are re-landed.
 
-# COMMAND ----------
-
 REPO = "lukebarousse/dbt_Analytics_Engineering_Course"
 TAG = "dataset-v1"                       # dataset I will be using
 VOLUME = "/Volumes/raw/jobs/files"
@@ -20,15 +18,11 @@ MONTHS = [
 ]
 FILES = [f"raw_job_postings_{m}.parquet" for m in MONTHS] + ["raw_job_skills.parquet"]
 
-# COMMAND ----------
-
 # the landing zone: the raw catalog + a schema named for the source system (jobs) + a Volume for the files
 # (raw has ONE owner — this notebook; dev and prod both read it)
 spark.sql("CREATE CATALOG IF NOT EXISTS raw")
 spark.sql("CREATE SCHEMA IF NOT EXISTS raw.jobs")
 spark.sql("CREATE VOLUME IF NOT EXISTS raw.jobs.files")
-
-# COMMAND ----------
 
 # download from the GitHub release straight into the Volume (~85MB total)
 import urllib.request, os
@@ -43,9 +37,7 @@ for name in FILES:
 
 print("Done.")
 
-# COMMAND ----------
-
-# land the bronze tables — raw, untouched, exactly as the scraper delivered them
+# bronze tables — raw, untouched
 spark.sql(f"""
     CREATE OR REPLACE TABLE raw.jobs.raw_job_postings AS
     SELECT * FROM read_files('{VOLUME}/raw_job_postings_*.parquet', format => 'parquet')
@@ -55,9 +47,7 @@ spark.sql(f"""
     SELECT * FROM read_files('{VOLUME}/raw_job_skills.parquet', format => 'parquet')
 """)
 
-# COMMAND ----------
-
-# sanity check — expect 843,097 postings and 3,304,574 skill rows
+# expect 843,097 postings and 3,304,574 skill rows
 display(spark.sql("""
     SELECT 'raw_job_postings' AS table, COUNT(*) AS rows FROM raw.jobs.raw_job_postings
     UNION ALL
