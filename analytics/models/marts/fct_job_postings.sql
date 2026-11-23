@@ -1,8 +1,16 @@
-WITH job_postings AS (
-    SELECT * FROM {{ ref('stg_job_postings') }}
+{{
+    config(
+        materialized = 'incremental',
+        incremental_strategy = 'merge',
+        unique_key = 'job_id'
+    )
+}}
+
+with job_postings as (
+    select * from {{ ref('stg_job_postings') }}
 )
 
-SELECT
+select
     job_id,
     job_title,
     search_term,
@@ -21,7 +29,12 @@ SELECT
     has_dental_insurance,
     has_paid_time_off,
     has_no_degree_mentioned
-FROM job_postings
+from job_postings
+
+{% if is_incremental() %}
+where search_date > (select max(search_date) from {{ this }})
+{% endif %}
+
 qualify row_number() over (
     partition by job_id
     order by searched_at desc
