@@ -1,12 +1,5 @@
--- BACKFILL: a year of nightly `dbt snapshot` runs, compressed into one query.
--- Rebuilds dev.snapshots.job_postings_snapshot at DAILY grain from staging's
--- full scrape log, then `dbt snapshot` takes over as if it had run all along.
--- Paste into the Databricks SQL editor and run once.
--- (How it works, line by line = the advanced-snapshots supporter deep-dive.)
-
 CREATE OR REPLACE TABLE dev.snapshots.job_postings_snapshot AS
 WITH deduped AS (
-    -- one row per job per scrape day (mirrors the snapshot input's pick)
     SELECT *
     FROM dev.staging.stg_job_postings
     QUALIFY ROW_NUMBER() OVER (
@@ -16,7 +9,6 @@ WITH deduped AS (
 ),
 
 sigged AS (
-    -- one fingerprint per row over the 13 watched columns
     SELECT *,
         MD5(CONCAT_WS('||',
             COALESCE(job_title, '~'), COALESCE(company_name, '~'),
@@ -34,7 +26,6 @@ sigged AS (
 ),
 
 versions AS (
-    -- keep a row only when the fingerprint differs from the previous scrape
     SELECT *
     FROM (
         SELECT *,
