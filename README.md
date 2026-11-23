@@ -10,7 +10,7 @@ Databricks, organized into analytics-friendly models, and transformed
 into a dimensional structure that supports SQL analysis.
 
 The goal is to create a repeatable workflow. Ingesting raw files
-to transforming, testing, and maintaining models
+to transforming, testing, and maintaining models.
 
 ## Architecture
 
