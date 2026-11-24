@@ -95,47 +95,51 @@ repeatable without manually running every step.
 ## Repository Structure
 
 ```text
- dbt-databricks-pipeline/
- ├── analytics/
- │   ├── analyses/
- │   ├── dbt_packages/
- │   ├── logs/
- │   ├── macros/
- │   ├── models/
- │   │   ├── intermediate/
- │   │   │   ├── int_skill_observations.sql
- │   │   │   └── intermediate.yml
- │   │   ├── marts/
- │   │   │   ├── bridge_job_skills.sql
- │   │   │   ├── dim_company.sql
- │   │   │   ├── dim_skill.sql
- │   │   │   ├── fct_job_postings.sql
- │   │   │   └── marts.yml
- │   │   └── staging/
- │   │       ├── staging.yml
- │   │       ├── stg_job_postings_current.sql
- │   │       ├── stg_job_postings.sql
- │   │       ├── stg_job_skills.sql
- │   │       └── sources.yml
- │     ├── seeds/
- │     ├── snapshots/
- │     ├── target/
- │     ├── tests/
- │     ├── .gitignore
- │     ├── dbt_project.yml
- │     ├── package-lock.yml
- │     └── packages.yml
- ├── img/
- ├── logs/
- ├── scripts/
- │   ├── backfill_job_postings_snapshot.sql
- │     └── load_raw.py
- ├── src/
- ├── .gitignore
- ├── .python-version
- ├── pyproject.toml
- ├── README.md
- └── uv.lock
+dbt-databricks-pipeline/
+├── analytics/
+│   ├── analyses/
+│   ├── dbt_packages/
+│   ├── logs/
+│   ├── macros/
+│   ├── models/
+│   │   ├── intermediate/
+│   │   │   ├── int_skill_observations.sql
+│   │   │   └── intermediate.yml
+│   │   ├── marts/
+│   │   │   ├── bridge_job_skills.sql
+│   │   │   ├── dim_company.sql
+│   │   │   ├── dim_skill.sql
+│   │   │   ├── fct_job_postings.sql
+│   │   │   └── marts.yml
+│   │   └── staging/
+│   │       ├── staging.yml
+│   │       ├── stg_job_postings_current.sql
+│   │       ├── stg_job_postings.sql
+│   │       ├── stg_job_skills.sql
+│   │       └── sources.yml
+│   ├── seeds/
+│   ├── snapshots/
+│   ├── target/
+│   ├── tests/
+│   ├── .gitignore
+│   ├── dbt_project.yml
+│   ├── package-lock.yml
+│   └── packages.yml
+├── docs/
+│   ├── assets/
+│   ├── info_schema/
+│   └── index.html
+├── img/
+├── logs/
+├── scripts/
+│   ├── backfill_job_postings_snapshot.sql
+│   └── load_raw.py
+├── src/
+├── .gitignore
+├── .python-version
+├── pyproject.toml
+├── README.md
+└── uv.lock
 ```
 
 ## Docs
