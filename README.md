@@ -138,6 +138,13 @@ repeatable without manually running every step.
  └── uv.lock
 ```
 
+## Docs
+
+Shows the full lineage graph (raw source tables -> staging models -> intermediate models -> star-schema models(fact, dimension, and bridge tables) -> snapshots and their relationships)
+
+For detailed project documentation, including pipeline architecture, dbt models, and database information, visit the [Project Documentation Website](https://georgegramatikov.github.io/dbt-databricks-pipeline/).
+
+
 ## Running the Project
 
 Requirements include a Databricks workspace with access to the raw
