@@ -138,7 +138,6 @@ repeatable without manually running every step.
  └── uv.lock
 ```
 
-
 ## Running the Project
 
 Requirements include a Databricks workspace with access to the raw
@@ -161,6 +160,7 @@ dbt snapshot
 
 The raw ingestion step must be completed before building models that
 depend on the raw tables.
+
 
 ## What I Learned
 
